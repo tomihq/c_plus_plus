@@ -3,13 +3,9 @@
 #include <chrono>
 using namespace std::chrono;
 
-long long fibonacci(long long n, std::vector<long long>& memo)
+long long fibonacci(int n)
 {
-    if (memo[n] != -1)
-    {
-        return memo[n];
-    }
-
+    
     if (n == 0)
     {
         return 0;
@@ -18,9 +14,8 @@ long long fibonacci(long long n, std::vector<long long>& memo)
     {
         return 1;
     }
-
-    memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo);
-    return memo[n];
+    
+    return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
 int main()
@@ -29,8 +24,7 @@ int main()
     int n = 0;
     std::cout << "Ingrese un numero para calcular fibonacci" << std::endl;
     std::cin >> n;
-    std::vector<long long> memo(n + 1, -1);
-    long long fibo = fibonacci(n, memo);
+    long long fibo = fibonacci(n);
     std::cout << "Fibonacci de " << n << " es " << fibo << std::endl;
 
     // chrono
